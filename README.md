@@ -83,7 +83,12 @@ The container includes:
 source ~/ros2_ws/install/setup.bash
 ```
 
-2. Launch the simulation with two robots:
+2. Start the Gazebo server:
+```bash
+gazebo -s libgazebo_ros_init.so -s libgazebo_ros_factory.so /opt/ros/humble/share/nav2_bringup/worlds/world_only.model
+```
+
+3. Launch the simulation with two robots:
 
 For the chaser robot (Terminal 1):
 ```bash
