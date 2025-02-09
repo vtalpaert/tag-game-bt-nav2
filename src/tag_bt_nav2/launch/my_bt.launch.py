@@ -1,5 +1,6 @@
 import os
 from ament_index_python.packages import get_package_share_directory
+from nav2_common.launch import RewrittenYaml
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, GroupAction,
                           IncludeLaunchDescription, LogInfo)
@@ -16,9 +17,21 @@ def generate_launch_description():
 
     # Launch configuration variables
     params_file = os.path.join(tag_bt_nav2_dir, 'config', 'nav2_params.yaml')
+    bt_xml_file = os.path.join(tag_bt_nav2_dir, 'config', 'navigate_to_pose_w_replanning_and_recovery.xml')
     autostart = LaunchConfiguration('autostart')
     use_robot_state_pub = LaunchConfiguration('use_robot_state_pub')
     log_settings = LaunchConfiguration('log_settings', default='true')
+
+    # Create our own temporary YAML files that include substitutions
+    param_substitutions = {
+        'bt_navigator.ros__parameters.default_nav_to_pose_bt_xml': bt_xml_file
+    }
+    
+    configured_params = RewrittenYaml(
+        source_file=params_file,
+        root_key='',
+        param_rewrites=param_substitutions,
+        convert_types=True)
 
     # Declare the launch arguments
     declare_autostart_cmd = DeclareLaunchArgument(
@@ -49,7 +62,7 @@ def generate_launch_description():
                 launch_arguments={'namespace': robot_name,
                                 'use_namespace': 'True',
                                 'use_sim_time': 'True',
-                                'params_file': params_file,
+                                'params_file': configured_params,
                                 'autostart': autostart,
                                 'use_rviz': 'True',
                                 'use_simulator': 'False',
