@@ -32,8 +32,8 @@ def generate_launch_description():
 
     # Define robot poses
     robots = {
-        'robot1': {'x': 0.0, 'y': 0.0, 'z': 0.0, 'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0},
-        'robot2': {'x': 2.0, 'y': 0.0, 'z': 0.0, 'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0}
+        'robot1': {'x': -1.7, 'y': -0.5, 'z': 0.0, 'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0},
+        'robot2': {'x': 0.6, 'y': 1.7, 'z': 0.0, 'roll': 0.0, 'pitch': 0.0, 'yaw': -2.0}
     }
 
     # Define commands for launching the navigation instances
@@ -51,7 +51,7 @@ def generate_launch_description():
                                 'use_sim_time': 'True',
                                 'params_file': params_file,
                                 'autostart': autostart,
-                                'use_rviz': 'False',
+                                'use_rviz': 'True',
                                 'use_simulator': 'False',
                                 'headless': 'True',
                                 'use_robot_state_pub': use_robot_state_pub,
