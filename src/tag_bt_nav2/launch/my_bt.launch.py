@@ -60,7 +60,8 @@ def generate_launch_description():
                                 'z_pose': TextSubstitution(text=str(init_pose['z'])),
                                 'roll': TextSubstitution(text=str(init_pose['roll'])),
                                 'pitch': TextSubstitution(text=str(init_pose['pitch'])),
-                                'yaw': TextSubstitution(text=str(init_pose['yaw']))}.items())
+                                'yaw': TextSubstitution(text=str(init_pose['yaw'])),
+                                'robot_name': TextSubstitution(text=robot_name)}.items())
         ])
         bringup_cmd_group.append(group)
 
