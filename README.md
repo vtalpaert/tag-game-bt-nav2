@@ -25,6 +25,8 @@ Students will learn:
 
 ### Installation
 
+#### Option 1: Direct Installation
+
 1. Install ROS2 Humble following the [official instructions](https://docs.ros.org/en/humble/Installation.html)
 
 2. Install required packages:
@@ -40,6 +42,39 @@ git clone <repository-url> tag_bt_nav2
 cd ~/ros2_ws
 colcon build
 ```
+
+#### Option 2: Using VSCode DevContainer (Recommended)
+
+This method provides a consistent development environment for all students.
+
+Prerequisites:
+1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/)
+2. Install [VSCode](https://code.visualstudio.com/)
+3. Install the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) in VSCode
+
+Steps:
+1. Clone this repository:
+```bash
+git clone <repository-url> tag_bt_nav2
+```
+
+2. Open the project in VSCode:
+```bash
+code tag_bt_nav2
+```
+
+3. When prompted "Reopen in Container", click "Reopen in Container". Alternatively:
+   - Press F1 (or Ctrl+Shift+P)
+   - Type "Dev Containers: Reopen in Container"
+   - Press Enter
+
+4. Wait for the container to build (this may take several minutes the first time)
+
+The container includes:
+- ROS2 Humble
+- Nav2 stack
+- TurtleBot3 packages
+- All necessary development tools
 
 ## Usage
 
