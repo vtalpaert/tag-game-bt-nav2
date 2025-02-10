@@ -25,6 +25,11 @@ Students will learn:
 
 ### Installation
 
+First, fork this repository to your own GitHub account:
+1. Visit the repository page
+2. Click the "Fork" button in the top-right corner
+3. Select your GitHub account as the destination
+
 #### Option 1: Direct Installation
 
 1. Install ROS2 Humble following the [official instructions](https://docs.ros.org/en/humble/Installation.html)
@@ -34,11 +39,11 @@ Students will learn:
 sudo apt install ros-humble-navigation2 ros-humble-nav2-bringup ros-humble-turtlebot3*
 ```
 
-3. Clone this repository:
+3. Clone your forked repository:
 ```bash
 mkdir -p ~/ros2_ws/src
 cd ~/ros2_ws/src
-git clone <repository-url> tag_bt_nav2
+git clone https://github.com/<your-username>/tag_bt_nav2.git
 cd ~/ros2_ws
 colcon build
 ```
