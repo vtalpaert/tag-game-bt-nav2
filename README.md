@@ -5,9 +5,9 @@ This project is designed for a student course focusing on Behavior Trees (BT) in
 ## Project Overview
 
 Two TurtleBot3 robots will participate in a game of tag where:
-- One robot is designated as "it" (the chaser)
-- The other robot must flee from the chaser
-- Roles are assigned using an environment variable (ROBOT_ROLE=0 for chaser, ROBOT_ROLE=1 for runner)
+- Robot1 is designated as "it" (the chaser)
+- Robot2 must flee from the chaser
+- Each robot uses its own behavior tree configuration file (robot1_bt.xml and robot2_bt.xml)
 
 Students will learn:
 - ROS2 Navigation2 fundamentals
@@ -89,30 +89,44 @@ gazebo -s libgazebo_ros_init.so -s libgazebo_ros_factory.so /opt/ros/humble/shar
 ```
 
 3. Launch the simulation with two robots:
-
-For the chaser robot (Terminal 1):
 ```bash
-export ROBOT_ROLE=0
 ros2 launch tag_bt_nav2 my_bt.launch.py
 ```
 
-For the runner robot (Terminal 2):
-```bash
-export ROBOT_ROLE=1
-ros2 launch tag_bt_nav2 my_bt.launch.py
-```
+This will launch both robots with their respective behavior trees:
+- Robot1 (chaser) using robot1_bt.xml
+- Robot2 (runner) using robot2_bt.xml
+
+You can interact with the robots using RViz to set initial positions and monitor their behavior.
 
 ## Assignment Tasks
 
-1. Implement a behavior tree for the chaser robot that:
+Students will work in pairs, with each team implementing both a chaser and runner behavior tree:
+
+1. Chaser Behavior Tree (robot1_bt.xml):
    - Localizes itself in the map
    - Detects the runner robot's position
    - Plans and executes paths to catch the runner
 
-2. Implement a behavior tree for the runner robot that:
+2. Runner Behavior Tree (robot2_bt.xml):
    - Localizes itself in the map
    - Detects the chaser's position
    - Plans and executes evasive maneuvers
+
+### Grading Criteria
+
+1. Basic Requirements (Pass/Fail):
+   - Each student must have meaningful commits in the git history
+   - Both behavior trees must be functional
+   - Code must be well-documented and follow ROS2 conventions
+
+2. Bonus Points:
+   - Teams can earn extra points through a competition
+   - Behavior trees from different teams will be mixed and matched
+   - Points awarded based on:
+     - Chaser effectiveness when paired with other teams' runners
+     - Runner effectiveness when paired with other teams' chasers
+     - Innovation in strategy and implementation
 
 ## Project Structure
 
