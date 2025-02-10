@@ -17,21 +17,10 @@ def generate_launch_description():
 
     # Launch configuration variables
     params_file = os.path.join(tag_bt_nav2_dir, 'config', 'nav2_params.yaml')
-    bt_xml_file = os.path.join(tag_bt_nav2_dir, 'config', 'navigate_to_pose_w_replanning_and_recovery.xml')
+
     autostart = LaunchConfiguration('autostart')
     use_robot_state_pub = LaunchConfiguration('use_robot_state_pub')
     log_settings = LaunchConfiguration('log_settings', default='true')
-
-    # Create our own temporary YAML files that include substitutions
-    param_substitutions = {
-        'bt_navigator.ros__parameters.default_nav_to_pose_bt_xml': bt_xml_file
-    }
-    
-    configured_params = RewrittenYaml(
-        source_file=params_file,
-        root_key='',
-        param_rewrites=param_substitutions,
-        convert_types=True)
 
     # Declare the launch arguments
     declare_autostart_cmd = DeclareLaunchArgument(
@@ -52,6 +41,17 @@ def generate_launch_description():
     # Define commands for launching the navigation instances
     bringup_cmd_group = []
     for robot_name, init_pose in robots.items():
+        bt_xml_file = os.path.join(tag_bt_nav2_dir, 'config', robot_name + '_bt.xml')
+        # Create our own temporary YAML files that include substitutions
+        param_substitutions = {
+            'bt_navigator.ros__parameters.default_nav_to_pose_bt_xml': bt_xml_file
+        }
+        configured_params = RewrittenYaml(
+            source_file=params_file,
+            root_key='',
+            param_rewrites=param_substitutions,
+            convert_types=True)
+        
         group = GroupAction([
             LogInfo(msg=['Launching ', robot_name]),
             
